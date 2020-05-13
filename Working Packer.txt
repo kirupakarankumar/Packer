@@ -1,0 +1,27 @@
+Creating AMI
+
+{
+"description": "Create a Custom Source Images",
+"variables": {
+"home": "{{env `HOME`}}",
+"project_id": "star-bloc",
+"zone": "us-west2-a",
+"name": "harvester"
+},
+"builders": [
+{
+"type": "googlecompute",
+"account_file": "{{user `home`}}/.config/gcloud/accounts.json",
+"project_id": "{{user `project_id`}}",
+"source_image_family": "centos-7",
+"zone": "{{user `zone`}}",
+"disk_size": "20",
+"ssh_username": "centos",
+"metadata": { "enable-oslogin": "false" },
+"machine_type": "n1-standard-1",
+"instance_name": "{{user `name`}}",
+"image_name": "harvester",
+"communicator": "ssh"
+}
+]
+}
